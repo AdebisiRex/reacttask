@@ -51,13 +51,15 @@ const AuthProvider = ({ children }) => {
   React.useEffect(() => {
     //TODO
     const checkToken =async()=>{
-      let response = await sdk.check(state.role)
-      if(response ==200){
-        return
+      let response = await sdk.check("admin")
+      console.log(response)
+      if(response.error ==false){
+        // dispatch({type: "LOGIN"})
       }else{
         dispatch({type: "LOGOUT"})
       }
     }
+  checkToken()
    
 
   }, []);

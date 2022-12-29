@@ -21,7 +21,7 @@ export default function MkdSDK() {
     }
     const endPoint = `${this._baseurl}/v2/api/lambda/login`
     const payload = {email, password, role}
-    const login = await fetch(endPoint,{
+    const login = await fetch(endPoint, {
       method: "post",
       headers: headers,
       body: JSON.stringify(payload)
@@ -105,14 +105,14 @@ export default function MkdSDK() {
     const headers ={
       "Content-Type": "application/json", 
       "x-project": "cmVhY3R0YXNrOmQ5aGVkeWN5djZwN3p3OHhpMzR0OWJtdHNqc2lneTV0Nw",
-      Authorization: "Bearer " + localStorage.getItem("token")
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
     }
-    const endPoint = `${this._baseurl}v2/api/lambda/check`
-    const payload = {role}
-    const checkToken = await fetch(endPoint,{
+    const checkEndPoint = `https://reacttask.mkdlabs.com/v2/api/lambda/check`
+    const checkPayload = {role}
+    const checkToken = await fetch(checkEndPoint, {
       method: "post",
       headers: headers,
-      body: JSON.stringify(payload)
+      body: JSON.stringify(checkPayload)
     });
     const response = await checkToken.json()
     return response
