@@ -27,7 +27,7 @@ export default function MkdSDK() {
       body: JSON.stringify(payload)
     });
     const loginResponse = await login.json();
-    
+
     return loginResponse 
   };
 
@@ -102,6 +102,20 @@ export default function MkdSDK() {
 
   this.check = async function (role) {
     //TODO
+    const headers ={
+      "Content-Type": "application/json", 
+      "x-project": "cmVhY3R0YXNrOmQ5aGVkeWN5djZwN3p3OHhpMzR0OWJtdHNqc2lneTV0Nw",
+      Authorization: "Bearer " + localStorage.getItem("token")
+    }
+    const endPoint = `${this._baseurl}v2/api/lambda/check`
+    const payload = {role}
+    const checkToken = await fetch(endPoint,{
+      method: "post",
+      headers: headers,
+      body: JSON.stringify(payload)
+    });
+    const response = await checkToken.json()
+    return response
   };
 
   return this;
