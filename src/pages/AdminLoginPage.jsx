@@ -15,6 +15,8 @@ const AdminLoginPage = () => {
     .required();
 
   const { dispatch } = React.useContext(AuthContext);
+
+  // console.log(dispatch)
   const navigate = useNavigate();
   const {
     register,
@@ -28,6 +30,15 @@ const AdminLoginPage = () => {
   const onSubmit = async (data) => {
     let sdk = new MkdSDK();
     //TODO
+    let {email, password} = data
+    let role= "admin"
+    const login = await sdk.login(email, password,role)
+    console.log(login)
+    localStorage.token = login.token
+    dispatch({type: "LOGIN"})
+    if(!login.error){
+      navigate("/admin/dashboard")
+    }
   };
 
   return (
