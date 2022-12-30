@@ -35,6 +35,8 @@ const AdminLoginPage = () => {
     let role= "admin"
     const login = await sdk.login(email, password,role)
     if(!login.error){
+      localStorage.token = login.token
+      localStorage.role=role;
       navigate("/admin/dashboard")
       dispatch({type: "LOGIN", payload:{role, token:login.token }})
       globalContext.dispatch({type: "SNACKBAR", payload:{message: "Logged in"} })

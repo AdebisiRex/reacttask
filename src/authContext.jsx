@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       //TODO
-      localStorage.token = action.payload.token
+      
       return {
         ...state,
         isAuthenticated:true,
@@ -51,10 +51,10 @@ const AuthProvider = ({ children }) => {
   React.useEffect(() => {
     //TODO
     const checkToken =async()=>{
-      let response = await sdk.check("admin")
+      let response = await sdk.check(localStorage.token)
       console.log(response)
       if(response.error ==false){
-        // dispatch({type: "LOGIN"})
+        dispatch({type: "LOGIN", payload:{ token: localStorage.token, role: localStorage.role}})
       }else{
         dispatch({type: "LOGOUT"})
       }

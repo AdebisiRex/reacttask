@@ -107,7 +107,7 @@ export default function MkdSDK() {
       "x-project": "cmVhY3R0YXNrOmQ5aGVkeWN5djZwN3p3OHhpMzR0OWJtdHNqc2lneTV0Nw",
       "Authorization": `Bearer ${localStorage.getItem("token")}`
     }
-    const checkEndPoint = `https://reacttask.mkdlabs.com/v2/api/lambda/check`
+    const checkEndPoint = `${this._baseurl}/v2/api/lambda/check`
     const checkPayload = {role}
     const checkToken = await fetch(checkEndPoint, {
       method: "post",
